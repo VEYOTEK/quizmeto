@@ -1,111 +1,80 @@
-```markdown
-# 🎉 QuizMeto — Bilgini Test Et, Eğlen, Yarış! 🧠🏆
+Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip detaylı şekilde anlattım. Her bölüm kısa ve net, ama yeterince bilgi içerir. 👇
 
-![QuizMeto Logo](https://raw.githubusercontent.com/VEYOTEK/quizmeto/main/assets/images/site-logo-1744056841.png)
+🎯 Genel Bakış  
+🧠 QuizMeto: kullanıcıların quiz oluşturduğu, quiz çözdüğü, puan kazandığı ve liderlik tablosunda yarıştığı PHP tabanlı interaktif platform. Hedef: eğlenerek öğrenme ve rekabet. 🏁
 
-QuizMeto; kullanıcıların quiz oluşturup çözebildiği, sonuçlarını görebildiği, profil ve liderlik tabloları ile rekabet edebildiği modern, hafif ve anlaşılır bir PHP tabanlı quiz platformudur. Bu README, projeyi hızlıca kurmanız, özelliklerini anlamanız ve katkıda bulunmanız için emoji destekli, görselli ve okunması kolay bir rehber şeklinde hazırlanmıştır. 💫
+✨ Temel Özellikler  
+- 🔐 Kayıt / Giriş / Çıkış — oturum yönetimi, parola hashleme.  
+- 📝 Quiz listeleme & filtreleme — kategori, zorluk, arama ve sayfalama.  
+- ▶️ Quiz oynatma — sorular rastgele çekilir, çoktan seçmeli seçenekler, ilerleme göstergesi.  
+- ⏱️ Zaman sınırı desteği — geri sayım, süresi dolunca otomatik gönderim.  
+- 📈 Sonuçlar & istatistikler — skor, yüzde, tamamlama süresi, sıralama.  
+- 🏆 Liderlik tablosu — genel veya quiz bazlı; zaman filtresi (gün/hafta/ay).  
+- 🧾 Admin paneli — quiz/kategori/soru/kullanıcı/skor yönetimi, silme işlemleri (transaction ile güvenli).  
+- 🛡️ Güvenlik — PDO prepared statements, CSRF token, input sanitization önerileri.  
 
----
+🗂️ Dosya ve Yapı (kısa)  
+- index.php — anasayfa, popüler quizler, top kullanıcılar.  
+- quizzes.php — tüm quizlerin listesi; filtre ve sayfalama.  
+- quiz.php — quiz oynatma (JS ile soru geçişleri, timer, form).  
+- submit-quiz.php — cevapları değerlendirip user_scores tablosuna kaydeder.  
+- quiz-result.php — detaylı sonuç görünümü, en iyi 5 skor.  
+- profile.php — profil görüntüleme/güncelleme, avatar yükleme, istatistikler.  
+- my-quizzes.php — kullanıcının çözdüğü ve (admin ise) oluşturduğu quizler.  
+- leaderboard.php — liderlik tablosu, filtreleme ve pagination.  
+- admin/* — yöneticiye özel sayfalar (yetki kontrolü var).  
+- config/db.php, includes/functions.php — DB bağlantı ve yardımcı fonksiyonlar.  
+- quizmeto (1).sql — veritabanı şeması & örnek veri (tables: users, quizzes, questions, answers, user_scores, categories, settings).
 
-## ✨ Öne Çıkan Özellikler
-- 🔐 Kayıt / Giriş / Profil düzenleme (profil fotoğrafı yükleme)
-- 📝 Quiz oluşturma, düzenleme (admin)
-- 🧩 Quiz oynatma: rastgele soru sırası, çoktan seçmeli cevaplar
-- ⏱️ Zaman sınırlı quiz desteği (geri sayım ve otomatik gönderme)
-- 📊 Quiz sonuçları: puan, yüzde, sıralama, tamamlama süresi
-- 🏅 Liderlik tablosu: genel veya quiz bazlı filtreleme
-- 🛠️ Admin paneli: quiz, soru, kategori, kullanıcı ve skor yönetimi
-- 🛡️ Temel güvenlik: PDO prepared statements, CSRF token kullanımı
+🧾 Veritabanı Öne Çıkanlar  
+- users: username, email, password(hash), profile_image, role, created_at. 👥  
+- quizzes: title, description, category_id, difficulty, time_limit, question_count, participants. 📚  
+- questions & answers: soru-şık ilişkisi, is_correct flag. ❓✅  
+- user_scores: user_id, quiz_id, score, completion_time, completed_at (liderlik için temel). 🏷️  
+- settings: site ayarları (items_per_page, enable_registration, enable_leaderboard vb.). ⚙️
 
----
+🔒 Güvenlik ve İyi Uygulamalar  
+- 🧪 PDO + prepared statements — SQL injection azaltılır.  
+- 🧾 CSRF token kullanımı formlarda mevcut; tüm kritik işlemlerde uygulandığından emin olun.  
+- 🖼️ Dosya yüklemelerinde MIME kontrolü, boyut limiti, upload dizini izinleri (assets/uploads) önemli.  
+- 🔐 Parola politikası: minimum uzunluk, güçlü hash (password_hash).  
+- 🔒 Prodüksiyon: HTTPS, error display kapalı, logging güvenli.
 
-## 🖼️ Projeye Ait Görseller (repo içinden)
-Aşağıda projede hali hazırda bulunan görselleri görebilirsiniz. Bunlar doğrudan repoda yer alan varlıklar (assets/images) kullanılarak eklendi.
+⚙️ Kurulumun Özeti (hızlı)  
+1. PHP 8+, MySQL/MariaDB, web sunucusu. ⚙️  
+2. Repo klonla → SQL dump'ı import et (quizmeto (1).sql). 💾  
+3. config/db.php içinde DB credential ayarla. 🔧  
+4. assets/uploads/ dizinine yazma izinleri ver. 🗂️  
+5. Tarayıcıda siteyi aç, kayıt ol veya örnek admin ile giriş yap. 🚀
 
-Logo:
-![Site Logo](https://raw.githubusercontent.com/VEYOTEK/quizmeto/main/assets/images/site-logo-1744056841.png)
+👑 Admin & Yönetim  
+- Admin rolü `users.role = 'admin'` ile kontrol edilir.  
+- Admin paneli: quiz oluşturma/düzenleme/silme, soru yönetimi, kullanıcı ve skor raporları.  
+- Kritik silme işlemleri DB transaction içinde yapılır — ilişkili sorular/cevaplar/user_scores güvenli şekilde silinir. 🧹
 
-Boş quiz ekranı / placeholder:
-![No Quiz](https://raw.githubusercontent.com/VEYOTEK/quizmeto/main/assets/images/no-quiz.svg)
+📈 Kullanıcı Deneyimi (UX) Notları  
+- Quiz oynatma: tek sayfa içinde soru kartları, ilerleme çubuğu ve dot-navigasyon. ⏩  
+- Önceki çözüm bilgisi gösterimi (aynı kullanıcı daha önce çözdüyse sonuç özet gösterilir). 🔁  
+- Sonuç sayfası: skor yüzdesine göre renkli geri bildirim (mükemmel/çok iyi/iyi...). 🎨
 
-Varsayılan avatar:
-![Default Avatar](https://raw.githubusercontent.com/VEYOTEK/quizmeto/main/assets/images/default-avatar.png)
+🛠️ Geliştirme & İyileştirme Önerileri  
+- ✅ Unit/integration testleri eklemek (özellikle scoring, submit-quiz).  
+- ✅ Rate limiting / brute-force koruması.  
+- ✅ API (REST/GraphQL) katmanı ayırarak frontend bağımsızlığı.  
+- ✅ Canlı güncellemeler için WebSocket—liderlik tabelası canlı güncelleme.  
+- ✅ Çoklu dil (i18n) desteği. 🌐
 
-Favicon (küçük görsel):
-![Favicon](https://raw.githubusercontent.com/VEYOTEK/quizmeto/main/assets/images/favicon-1744056841.ico)
+🤝 Katkı Süreci  
+- Fork → branch → değişiklik → PR.  
+- Kod standartları: güvenlik, input validation, prepared statements.  
+- Büyük değişikliklerde öncelikle issue açıp tartışma yapın. 💬
 
-Not: Eğer repoda özel **ekran görüntüleri (screenshots)** yoksa, isterseniz ben örnek ara yüz görüntüleri (mockup) hazırlayıp README'ye ekleyebilirim. Veya siz çalışma ekranından birkaç ekran görüntüsü yüklerseniz onları README'ye yerleştiririm. 📸
+🔍 Hızlı Hata-Çözüm İpuçları  
+- DB bağlantı hatası → config/db.php creds & host kontrolü. 🔌  
+- Görseller görünmüyorsa → assets/uploads izinleri ve path kontrolü. 🖼️  
+- SQL import charset hatası → import utf8mb4 ile yapın. 🌐
 
----
+🎁 Kısa Özet (tek satır)  
+QuizMeto; PHP + MySQL ile yapılmış, CSRF/Prepared Statements kullanan, zaman sınırlı quiz desteği, kullanıcı profili ve liderlik tablosu içeren, admin tarafından yönetilebilen, öğrenmeyi eğlenceli hale getiren bir quiz platformu. 🎓🏆
 
-## 🚀 Hızlı Kurulum (Local)
-1. Gereksinimler:
-   - PHP 8+ ve gerekli PHP uzantıları (pdo_mysql vb.)
-   - MySQL / MariaDB
-   - Web sunucusu (Apache / Nginx) veya PHP built-in server
-2. Depoyu klonlayın:
-   git clone https://github.com/VEYOTEK/quizmeto.git
-3. Veritabanı oluşturun ve SQL dump'ını import edin:
-   - Dosya: `quizmeto (1).sql` (repoda mevcut)
-4. `config/db.php` içindeki veritabanı bağlantı bilgilerini güncelleyin (host, db, user, pass).
-5. Dosya izinlerini kontrol edin:
-   - `assets/uploads/` dizini yazılabilir olmalı (profil resimleri için).
-6. Tarayıcıda projeyi açın: http://localhost/quizmeto
-
----
-
-## 🔧 Temel Dosya Yapısı
-- index.php — Anasayfa, popüler quizler, üst kullanıcılar
-- register.php / login.php / logout.php — Kullanıcı işlemleri
-- quizzes.php — Quiz listesi, filtreleme, sayfalama
-- quiz.php — Quiz oynatma ekranı (JS ile ilerleme, timer)
-- submit-quiz.php — Gönderim ve skor kaydetme
-- quiz-result.php — Detaylı sonuç ekranı
-- profile.php — Profil görüntüleme ve güncelleme
-- my-quizzes.php — Kullanıcının katıldığı/oluşturduğu quizler
-- leaderboard.php — Liderlik tablosu
-- admin/ — Yönetici paneli sayfaları
-- config/db.php — PDO ile DB bağlantı
-- includes/functions.php — Yardımcı fonksiyonlar (CSRF, formatlama, hesaplama)
-- quizmeto (1).sql — DB şeması ve örnek veriler
-
----
-
-## 🔐 Güvenlik Önerileri
-- Tüm formlarda CSRF tokenlar zaten kullanılıyor — her formu kontrol edin.
-- Dosya yükleme (profil resmi) için MIME tipi ve maksimum boyut kontrolleri mevcut ama ek kontroller (resim işleme, virüs taraması) ekleyin.
-- Production için HTTPS kesinlikle zorunlu olmalı.
-- Hataları kullanıcıya gösterirken ham DB hatası sızdırmamaya dikkat edin.
-- Rate limiting / login brute-force koruması eklenmesi önerilir.
-
----
-
-## 🧩 Admin Bilgileri
-- Admin hesabı SQL dump içinde mevcut (kontrol etmek için `users` tablosuna bakın). 🌟
-- Admin paneline erişmek için kullanıcı rolü `admin` olmalıdır.
-- Admin panelinden quiz silme, kullanıcı yönetimi vb. yapılabilir.
-
----
-
-## 🤝 Katkıda Bulunma
-- Fork → branch → değişiklik → PR
-- Önerilen geliştirmeler:
-  - Unit test ekleme
-  - API uçları (REST/GraphQL) ile frontend ayrıştırma
-  - Websocket ile canlı liderlik tabloları
-  - Çoklu dil desteği (i18n)
-
----
-
-## 📝 Lisans
-Projede lisans belirtilmemişse lütfen uygun bir lisans (ör. MIT) ekleyin. Lisans ekleyince README'ye lisans bölümünü güncellerim. 📜
-
----
-
-İsterseniz:
-- README'yi repo köküne yükleyebilirim (README.md olarak). ✅
-- Eksikse veya isterseniz gerçek ekran görüntüleri ekleyebilmeniz için örnek bir "screenshots/" dizini ve şablon da oluşturabilirim. 🖼️
-- Veya sizin yükleyeceğiniz ekran görüntülerini README'ye otomatik ekleyecek bir PR hazırlarım.
-
-Hangi görselleri README'ye eklememi istersiniz: repo içindeki mevcut varlıklar yeterli mi yoksa sizin sağladığınız ekran görüntülerini kullanayım mı? 📷✨
-```
+İstersen bu açıklamayı daha kısa bir “hızlı özet”e veya teknik bir “kurulum adım-adım”e dönüştüreyim — hangi formatı tercih edersin? 🔁
