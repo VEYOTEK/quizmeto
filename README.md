@@ -12,7 +12,10 @@ Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip det
 - 📈 Sonuçlar & istatistikler — skor, yüzde, tamamlama süresi, sıralama.  
 - 🏆 Liderlik tablosu — genel veya quiz bazlı; zaman filtresi (gün/hafta/ay).  
 - 🧾 Admin paneli — quiz/kategori/soru/kullanıcı/skor yönetimi, silme işlemleri (transaction ile güvenli).  
-- 🛡️ Güvenlik — PDO prepared statements, CSRF token, input sanitization önerileri.  
+- 🛡️ Güvenlik — PDO prepared statements, CSRF token, input sanitization önerileri.
+
+- <img width="1920" height="906" alt="image" src="https://github.com/user-attachments/assets/ae9beb3d-b7eb-4cf6-a257-d2645d15fabf" />
+
 
 🗂️ Dosya ve Yapı (kısa)  
 - index.php — anasayfa, popüler quizler, top kullanıcılar.  
@@ -26,6 +29,9 @@ Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip det
 - admin/* — yöneticiye özel sayfalar (yetki kontrolü var).  
 - config/db.php, includes/functions.php — DB bağlantı ve yardımcı fonksiyonlar.  
 - quizmeto (1).sql — veritabanı şeması & örnek veri (tables: users, quizzes, questions, answers, user_scores, categories, settings).
+
+- <img width="1920" height="907" alt="image" src="https://github.com/user-attachments/assets/1e46dbf5-8642-4097-9a33-d9749b434414" />
+
 
 🧾 Veritabanı Öne Çıkanlar  
 - users: username, email, password(hash), profile_image, role, created_at. 👥  
