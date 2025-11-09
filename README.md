@@ -60,7 +60,8 @@ Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip det
 4. assets/uploads/ dizinine yazma izinleri ver. 🗂️  
 5. Tarayıcıda siteyi aç, kayıt ol veya örnek admin ile giriş yap. 🚀
 
-   <img width="1640" height="830" alt="image" src="https://github.com/user-attachments/assets/a6ba42af-2dce-4c50-a921-508f14f41203" />
+   <img width="1920" height="891" alt="image" src="https://github.com/user-attachments/assets/b5c3b8fe-5d7e-46df-9bc7-41ef7048547b" />
+
 
 
 👑 Admin & Yönetim  
