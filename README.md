@@ -2,6 +2,7 @@ Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip det
 
 🎯 Genel Bakış  
 🧠 QuizMeto: kullanıcıların quiz oluşturduğu, quiz çözdüğü, puan kazandığı ve liderlik tablosunda yarıştığı PHP tabanlı interaktif platform. Hedef: eğlenerek öğrenme ve rekabet. 🏁
+<img width="1920" height="681" alt="image" src="https://github.com/user-attachments/assets/d04ce145-86ca-4c01-b110-0bed6ec99703" />
 
 ✨ Temel Özellikler  
 - 🔐 Kayıt / Giriş / Çıkış — oturum yönetimi, parola hashleme.  
