@@ -40,6 +40,9 @@ Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip det
 - user_scores: user_id, quiz_id, score, completion_time, completed_at (liderlik için temel). 🏷️  
 - settings: site ayarları (items_per_page, enable_registration, enable_leaderboard vb.). ⚙️
 
+- <img width="1920" height="856" alt="image" src="https://github.com/user-attachments/assets/47aef7f5-11a4-40ea-a62d-a125fd162289" />
+
+
 🔒 Güvenlik ve İyi Uygulamalar  
 - 🧪 PDO + prepared statements — SQL injection azaltılır.  
 - 🧾 CSRF token kullanımı formlarda mevcut; tüm kritik işlemlerde uygulandığından emin olun.  
@@ -47,12 +50,18 @@ Tamam — aşağıda QuizMeto projesini yalnızca emojilerle zenginleştirip det
 - 🔐 Parola politikası: minimum uzunluk, güçlü hash (password_hash).  
 - 🔒 Prodüksiyon: HTTPS, error display kapalı, logging güvenli.
 
+- <img width="1920" height="898" alt="image" src="https://github.com/user-attachments/assets/407fecc2-06d0-4280-bddc-3445233a36c8" />
+
+
 ⚙️ Kurulumun Özeti (hızlı)  
 1. PHP 8+, MySQL/MariaDB, web sunucusu. ⚙️  
 2. Repo klonla → SQL dump'ı import et (quizmeto (1).sql). 💾  
 3. config/db.php içinde DB credential ayarla. 🔧  
 4. assets/uploads/ dizinine yazma izinleri ver. 🗂️  
 5. Tarayıcıda siteyi aç, kayıt ol veya örnek admin ile giriş yap. 🚀
+
+   <img width="1640" height="830" alt="image" src="https://github.com/user-attachments/assets/a6ba42af-2dce-4c50-a921-508f14f41203" />
+
 
 👑 Admin & Yönetim  
 - Admin rolü `users.role = 'admin'` ile kontrol edilir.  
